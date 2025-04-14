@@ -11,7 +11,7 @@ async function main() {
       columns: {
         firstName: f.firstName(),
         lastName: f.lastName(),
-        dateOfBirth: f.date(),
+        dateOfBirth: f.date({ minDate: "1960-01-01", maxDate: "1990-12-31" }),
         email: f.email(),
         isActive: f.boolean(),
       },

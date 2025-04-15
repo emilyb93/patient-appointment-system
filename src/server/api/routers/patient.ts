@@ -33,4 +33,36 @@ export const patientRouter = {
       });
       return formattedPatients || [];
     }),
+  getPatientDetails: publicProcedure
+    .input(z.object({ id: z.number() }))
+    .output(
+      z.object({
+        patient: z.object({
+          id: z.number(),
+          firstName: z.string().max(100),
+          lastName: z.string().max(100),
+          dateOfBirth: z.string(),
+          email: z.string().email().nullable(),
+          isActive: z.boolean(),
+          createdAt: z.string(),
+          updatedAt: z.string(),
+        }),
+      })
+    )
+    .query(async ({ input: { id } }) => {
+      const patientDetails = await patientService.getSinglePatient(id);
+
+      if (!patientDetails) {
+        throw new Error("Patient not found");
+      }
+
+      return {
+        patient: {
+          ...patientDetails,
+          createdAt: patientDetails.createdAt.toString(),
+          updatedAt: patientDetails.updatedAt?.toString() || "",
+          dateOfBirth: patientDetails.dateOfBirth.toString(),
+        },
+      };
+    }),
 } satisfies TRPCRouterRecord;

@@ -2,7 +2,7 @@
 
 import { redirect, useParams, useSearchParams } from "next/navigation";
 import PatientDetailsContainer from "../../_components/PatientDetailsContainer";
-import { usePatientDetails } from "trpc-hooks/useSinglePatient";
+import { usePatientDetails } from "@lutra/trpc-hooks/useSinglePatient";
 import AppointmentPicker from "@lutra/app/_components/AppointmentPicker";
 
 export default function PatientDetails() {

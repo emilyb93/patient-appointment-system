@@ -2,10 +2,10 @@
 
 import PatientCard from "./PatientCard";
 import { useParams, useSearchParams } from "next/navigation";
-import { usePatientDetails } from "trpc-hooks/useSinglePatient";
+import { usePatientDetails } from "@lutra/trpc-hooks/useSinglePatient";
 import SinglePatientCard from "./SinglePatientCard";
 import { AppointmentList } from "./AppointmentList";
-import { useAppointments } from "trpc-hooks/useAppointments";
+import { useAppointments } from "@lutra/trpc-hooks/useAppointments";
 
 export default function PatientDetailsContainer({
   patientId,

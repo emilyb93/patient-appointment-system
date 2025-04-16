@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { formatTimeForDatabase } from "../utils";
-import { useAppointments } from "trpc-hooks/useAppointments";
+import { useAppointments } from "@lutra/trpc-hooks/useAppointments";
 
 export function useAppointmentPicker(patientId: number) {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);

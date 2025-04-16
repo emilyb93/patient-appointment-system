@@ -3,7 +3,7 @@
 import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useAppointmentPicker } from "../react-hooks/useAppointmentPicker";
+import { useAppointmentPicker } from "../_react-hooks/useAppointmentPicker";
 
 export default function AppointmentPicker({
   patientId,

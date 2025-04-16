@@ -6,7 +6,6 @@ export const useAppointments = (patientId: number) => {
   const trpc = api.useUtils();
 
   // Query to list appointments
-  const queryClient = useQueryClient();
   const {
     data: appointmentList,
     error,

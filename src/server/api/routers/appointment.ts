@@ -28,7 +28,6 @@ export const appointmentRouter = {
   addAppointment: publicProcedure
     .input(ZodAppointmentInsertSchema)
     .mutation(async ({ input: { patientId, dateTime, notes, reason } }) => {
-      // add an appointment
       const result = await db.transaction(async (tx) => {
         const appointment = await appointmentService.createAppointment(tx, {
           patientId,

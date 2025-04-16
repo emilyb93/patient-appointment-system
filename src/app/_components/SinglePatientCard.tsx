@@ -1,5 +1,7 @@
 import Link from "next/link";
 import type { PatientData } from "../types";
+import { useAppointments } from "trpc-hooks/useAppointments";
+import { AppointmentList } from "./AppointmentList";
 
 interface PatientCardProps {
   patient: PatientData;

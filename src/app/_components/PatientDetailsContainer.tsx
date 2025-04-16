@@ -4,16 +4,28 @@ import PatientCard from "./PatientCard";
 import { useParams, useSearchParams } from "next/navigation";
 import { usePatientDetails } from "trpc-hooks/useSinglePatient";
 import SinglePatientCard from "./SinglePatientCard";
+import { AppointmentList } from "./AppointmentList";
+import { useAppointments } from "trpc-hooks/useAppointments";
 
-export default function PatientDetailsContainer({}) {
-  const searchParams = useParams<{ id: string }>();
-  const id = searchParams.id;
-  const { patient } = usePatientDetails({ id: Number(id) });
+export default function PatientDetailsContainer({
+  patientId,
+}: {
+  patientId: number;
+}) {
+  const { patient } = usePatientDetails({ id: Number(patientId) });
+  const { appointmentList, appointmentsLoading } = useAppointments(patientId);
+  console.log(appointmentList, "<<<<<<<<<?");
 
-  if (!patient) return <div>Loading ...</div>;
+  if (!patient || !appointmentList) return <div>Loading ...</div>;
   return (
     <div>
       <SinglePatientCard patient={patient.patient} />
+
+      <section>
+        <p className="mt-5 text-2xl">Appointments</p>
+
+        {appointmentList && <AppointmentList appointments={appointmentList} />}
+      </section>
     </div>
   );
 }

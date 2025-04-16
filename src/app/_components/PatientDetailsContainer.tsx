@@ -14,7 +14,6 @@ export default function PatientDetailsContainer({
 }) {
   const { patient } = usePatientDetails({ id: Number(patientId) });
   const { appointmentList, appointmentsLoading } = useAppointments(patientId);
-  console.log(appointmentList, "<<<<<<<<<?");
 
   if (!patient || !appointmentList) return <div>Loading ...</div>;
   return (

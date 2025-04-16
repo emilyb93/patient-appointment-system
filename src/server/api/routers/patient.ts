@@ -7,6 +7,7 @@ import { z } from "zod";
 
 export const patientRouter = {
   getAllPatients: publicProcedure
+    .input(z.object({ page: z.number() }))
     .output(
       z.array(
         z.object({
@@ -21,8 +22,8 @@ export const patientRouter = {
         })
       )
     )
-    .query(async () => {
-      const patients = await patientService.getAllPatients();
+    .query(async ({ input: { page } }) => {
+      const patients = await patientService.getAllPatients({ page });
       const formattedPatients = patients.map((patient) => {
         return {
           ...patient,

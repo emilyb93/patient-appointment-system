@@ -3,10 +3,16 @@ import { patients } from "@lutra/server/db/schema";
 import { eq } from "drizzle-orm";
 
 export const patientService = {
-  getAllPatients: async () => {
-    const patients = await db.query.patients.findMany();
+  getAllPatients: async ({ page }: { page: number }) => {
+    const pageSize = 5;
+    const offset = (page - 1) * pageSize;
+    const patientList = await db
+      .select()
+      .from(patients)
+      .limit(5)
+      .offset(offset);
 
-    return patients;
+    return patientList;
   },
   getSinglePatient: async (id: number) => {
     const patientDetails = await db
